@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Query Assets</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="./files/images/icons/favicon.ico" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./files/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./files/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./files/vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./files/vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./files/vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./files/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./files/vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="./files/css/util.css">
+	<link rel="stylesheet" type="text/css" href="./files/css/main.css">
+	<link rel="stylesheet" type="text/css" href="./files/css/my-main.css">
+	<!--===============================================================================================-->
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="./files/css/style.css">
+
+</head>
+
+<body>
+
+	<div class="limiter">
+
+		<div class="container-login100">
+
+			<div id="panelContainer" class="wrap-login100" style="margin-top: 20px;">
+
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178">
+
+					<span id="header" class="login100-form-title">
+						Hyperledger Tester
+					</span>
+
+					<div style="display: flex; justify-content: space-around;"">
+
+						<div id="queryById" class="login100-form-btn queryTypeBtn" enabled="false">
+							Query By ID
+						</div>
+
+						<div id="queryByParams" class="login100-form-btn queryTypeBtn" enabled="true">
+							Query By other Params
+						</div>
+	
+					</div>
+
+					<hr><br>
+
+
+
+					<div id="ledgerIdContainer" class="wrap-input100 validate-input m-b-16" 
+						style="width: 50%; margin-left: auto; margin-right: auto;">
+						<input id="ledgerId" class="input100" type="text" name="ledgerId" placeholder="Ledger ID (_id)" title="Ledger ID (_id)">
+						<span class="focus-input100"></span>
+					</div>
+
+
+					<div id="inputContainer">
+
+						<div>
+	
+							<div class="wrap-input100 validate-input m-b-16">
+								<input id="rdrname" class="input100" type="text" name="rdrname" placeholder="Radar Name" title="Radar Name">
+								<span class="focus-input100"></span>
+							</div>
+		
+		
+							<div class="wrap-input100 validate-input">
+								<input id="lat" class="input100" type="text" name="lat" placeholder="Lattitude" title="Lattitude">
+								<span class="focus-input100"></span>
+							</div>
+		
+		
+							<div class="wrap-input100 validate-input m-b-16" style="margin-top: 18px">
+								<input id="lon" class="input100" type="text" name="lon" placeholder="Longitude" title="Longitude">
+								<span class="focus-input100"></span>
+							</div>
+		
+		
+							<div class="wrap-input100 validate-input m-b-16" style="margin-top: 18px">
+								<input id="alt" class="input100" type="text" name="delay "placeholder="Altitude" title="Altitude">
+								<span class="focus-input100"></span>
+							</div>
+						</div>
+	
+
+						<div>
+							<div class="wrap-input100 validate-input m-b-16">
+								<input id="targetId" class="input100" type="text" name="targetId" placeholder="Target ID" title="Target ID">
+								<span class="focus-input100"></span>
+							</div>
+		
+		
+							<div class="wrap-input100 validate-input">
+								<input id="speed" class="input100" type="text" name="speed" placeholder="Speed" title="Speed">
+								<span class="focus-input100"></span>
+							</div>
+		
+		
+							<div class="wrap-input100 validate-input m-b-16" style="margin-top: 18px">
+								<input id="time" class="input100" type="text" name="time" placeholder="Time" title="Time">
+								<span class="focus-input100"></span>
+							</div>
+		
+		
+							<div class="wrap-input100 validate-input m-b-16" style="margin-top: 18px">
+								<input id="type" class="input100" type="text" name="type" placeholder="Type" title="Type">
+								<span class="focus-input100"></span>
+							</div>
+						</div>
+
+					</div>
+					
+										
+					<input type="checkbox" id="followingTick">
+					<label for="followingTick">Following</label>
+					
+
+					<br>
+
+					<div class="container-login100-form-btn">
+
+						<button id="sendQueryBtn" class="login100-form-btn">
+							Send Query
+						</button>
+
+						<button id="abortBtn" class="login100-form-btn">
+							Abort
+						</button>
+
+					</div>
+
+
+					<!-- Loading Animation -->
+					<div id="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+				
+				</form>
+
+			</div>
+
+		</div>
+
+
+
+		<section class="ftco-section">
+
+			<div class="container">
+
+				<!-- <div class="row justify-content-center">
+
+					<div class="col-md-6 text-center mb-5">
+						<h2 class="heading-section">Table #1</h2>
+					</div>
+
+				</div> -->
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="table-wrap">
+							
+							<table class="table table-striped myTable">
+
+								<thead>
+									<tr id="firstLine">
+										<th>Num</th>
+										<th>ID</th>
+										<th>Radar Name</th>
+										<th>Lattitude</th>
+										<th>Longitude</th>
+										<th>Altitude</th>
+										<th>Target ID</th>
+										<th>Speed</th>
+										<th>Time</th>
+										<th>Type</th>
+									</tr>
+								</thead>
+
+								<tbody id="tableBody">
+
+									<!-- <tr>
+										<td>T_ME</th>
+										<td>fateh</td>
+										<td>50.000000</td>
+										<td>30.000000</td>
+										<td>6000</td>
+										<td>R50</td>
+										<td>199</td>
+										<td>17:20</td>
+										<td>Unkonown</td>
+									</tr> -->
+
+									<!-- <tr>
+										<td>1</th>
+										<td>Mark Otto</td>
+										<td>Japan</td>
+										<td>$3000</td>
+										<td>$1200</td>
+										<td>$1200</td>
+										<td><a href="#" class="btn btn-warning">Open</a></td>
+									</tr>
+
+									<tr>
+										<td>1</th>
+										<td>Mark Otto</td>
+										<td>Japan</td>
+										<td>$3000</td>
+										<td>$1200</td>
+										<td>$1200</td>
+										<td><a href="#" class="btn btn-danger">On hold</a></td>
+									</tr> -->
+
+								</tbody>
+
+							</table>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+
+	<!--===============================================================================================-->
+	<script src="./files/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="./files/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="./files/vendor/bootstrap/js/popper.js"></script>
+	<script src="./files/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="./files/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="./files/vendor/daterangepicker/moment.min.js"></script>
+	<script src="./files/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="./files/vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+
+	<script src="./files/js/jquery.min.js"></script>
+	<script src="./files/js/popper.js"></script>
+	<script src="./files/js/bootstrap.min.js"></script>
+
+	<script src="./files/js/main.js"></script>
+	
+
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<script src="./script.js"></script>
+
+</body>
+
+</html>
